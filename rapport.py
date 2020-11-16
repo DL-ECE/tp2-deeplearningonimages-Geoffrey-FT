@@ -185,6 +185,8 @@ def normalize_tensor(input_tensor: torch.Tensor) -> torch.Tensor:
 def sigmoid(input_tensor: torch.Tensor) -> torch.Tensor:
     """Apply a sigmoid to the input Tensor"""
     # YOUR CODE HERE
+    if (type(input_tensor) != torch.Tensor):
+        input_tensor = torch.from_numpy(input_tensor.astype(np.float32))
     z = 1/(1 + torch.exp(-input_tensor)) 
     
     return z
@@ -193,6 +195,8 @@ def sigmoid(input_tensor: torch.Tensor) -> torch.Tensor:
 def softmax(input_tensor: torch.Tensor)-> torch.Tensor:
     """Apply a softmax to the input tensor"""
     # YOUR CODE HERE 
+    if (type(input_tensor) != torch.Tensor):
+        input_tensor = torch.from_numpy(input_tensor.astype(np.float32))
     exp_X = torch.exp(input_tensor)
     sum_exp = torch.sum(torch.exp(input_tensor),axis=1).reshape(-1,1)
     
