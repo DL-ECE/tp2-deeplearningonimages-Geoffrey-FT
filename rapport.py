@@ -582,7 +582,10 @@ Now let's use pytorch convolution layer to do the forward pass. Use the document
 """
 
 def convolution_forward_torch(image, kernel):
-    # YOUR CODE HERE
+    # YOUR CODE HERE 
+    convol = nn.Conv2d(1638 ,1,kernel.shape,stride=2)
+
+    return convol
 
 """In pytorch you can also access other layer like convolution2D, pooling layers, for example in the following cell use the __torch.nn.MaxPool2d__ to redduce the image size."""
 
@@ -609,22 +612,24 @@ if __name__ == "__main__" :
 
 """Display the 10 image from train set and 10 images from validation set, print their ground truth"""
 
-def display_10_images(dataset):
-    # YOUR CODE HERE 
-    plt.figure(figsize = (dataset[0][0].width, dataset[0][0].height))
-    for i in range(10):
-        image,target = dataset[i]
-        plt.subplot(1,10,i+1)
-        plot_one_tensor(image)
-        plt.title("Target is "+str(target))
+if __name__ == "__main__":
 
-#Display 10 images from train set
-fmnist_train = FashionMNIST(os.getcwd(), train=True, download=True)
-display_10_images(fmnist_train)
+    def display_10_images(dataset):
+        # YOUR CODE HERE 
+        plt.figure(figsize = (dataset[0][0].width, dataset[0][0].height))
+        for i in range(10):
+            image,target = dataset[i]
+            plt.subplot(1,10,i+1)
+            plot_one_tensor(image)
+            plt.title("Target is : "+str(target))
 
-#Display 10 images from validation set
-fmnist_val = FashionMNIST(os.getcwd(), train=False, download=True)
-display_10_images(fmnist_val)
+    #Display 10 images from train set
+    fmnist_train = FashionMNIST(os.getcwd(), train=True, download=True)
+    display_10_images(fmnist_train)
+
+    #Display 10 images from validation set
+    fmnist_val = FashionMNIST(os.getcwd(), train=False, download=True)
+    display_10_images(fmnist_val)
 
 """What is the shape of each images
 How many images do we have
